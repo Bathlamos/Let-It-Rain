@@ -1,5 +1,4 @@
-Let-It-Rain
-===========
+<img src="http://matt.legault.me/wp-content/uploads/2013/06/LetItRainSplash.jpg" />
 
 Have you ever wondered what it would be like to be caught in a rainstorm of pigs falling from the sky? Your search is over!
 
