@@ -1,0 +1,25 @@
+package me.legault.letItRain;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+public class LetItRainHelp implements CommandExecutor{
+	
+	public LetItRainHelp(LetItRain plugin){}
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String label,  String[] args) {
+		Resources.privateMsg(sender, "________________ Let It Rain " + Resources.getPluginVersion() + " ________________");
+		Resources.privateMsg(sender, "/rain <creature> <amount/duration> <radius> <player/coordinate name>");
+		Resources.privateMsg(sender, "/firerain <creature> <amount/duration> <radius> <player/coordinate name>");
+		Resources.privateMsg(sender, "/rain add <coordinate name>");
+		Resources.privateMsg(sender, "/rain remove <coordinate name>");
+		Resources.privateMsg(sender, "/zeus");
+		Resources.privateMsg(sender, "/strike <player>");
+		Resources.privateMsg(sender, "/launcher");
+		Resources.privateMsg(sender, "/slaughter <radius>");
+		Resources.privateMsg(sender, "/removeItems <radius>");
+		return true;
+	}
+
+}

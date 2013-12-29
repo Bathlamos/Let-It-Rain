@@ -1,0 +1,56 @@
+name: LetItRain
+main: me.legault.LetItRain.LetItRain
+version: 4.2.0
+
+commands:
+   zeus:
+      description: Generates a lightning bolt on the pointer
+      usage: /<command>
+      default: op
+      permission: LetItRain.zeus
+      aliases: ['z']
+   rain:
+      description: Spawns a rain of animals on selected player
+      usage: /<command> <creature> <player> <amount> <radius>
+      default: op
+      permission: LetItRain.rain
+   firerain:
+      description: Spawns a rain of burning animals on selected player
+      usage: /<command> <creature> <player> <amount> <radius>
+      default: op
+      permission: LetItRain.firerain
+   strike:
+      description: Kill a player by striking it with lightning
+      usage: /<command> <player>
+      default: op
+      permission: LetItRain.strike
+   launcher:
+      description: Grenade Launcher
+      usage: /<command>
+      default: op
+      permission: LetItRain.launcher
+   removeItems:
+      description: removes drops from the rain command
+      usage: /<command> <radius>
+      default: op
+      permission: LetItRain.removeItems
+   slaughter:
+      description: kill nearby animals
+      usage: /<command> <radius>
+      default: op
+      permission: LetItRain.slaughter
+   letitrain:
+      description: displays helps
+      usage: /<command>
+permissions:
+    LetItRain.*:
+        description: Gives access to all LetItRain commands
+        children:
+            LetItRain.rain: true
+            LetItRain.rain.coordinates: false
+            LetItRain.firerain: true
+            LetItRain.zeus: true
+            LetItRain.strike: true
+            LetItRain.launcher: true
+            LetItRain.slaughter: true
+            LetItRain.removeItems: true
