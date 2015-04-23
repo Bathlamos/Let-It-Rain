@@ -235,7 +235,7 @@ public class LetItRain extends JavaPlugin{
 			dFirerainMsg = conf("LetItRain.Rain.Firerain message", dFirerainMsg);
 			destructiveArrows = conf("LetItRain.Rain.Deep impact arrows", true);
 			itemZeus = conf("LetItRain.Zeus.Launcher id", 369);
-			item = conf("LetItRain.Grenade Launcher.Launcher id", 51);
+			item = conf("LetItRain.Grenade Launcher.Launcher id", 377);
 			dAmount = conf("LetItRain.Rain.Default amount", 500);
 			dRadius = conf("LetItRain.Rain.Default radius", 30);
 			rainBlocks = !conf("LetItRain.Rain.Blacklist.Block", false); //Note: the nots are important. Don't delete
