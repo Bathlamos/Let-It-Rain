@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +17,7 @@ public class Resources {
 		return "4.2.0";
 	}
 
+	@SuppressWarnings("deprecation")
 	public static EntityType getEntityType(String identifier){
 		EntityType e;
 		try{
@@ -57,6 +58,7 @@ public class Resources {
 		if (s == null)
 			return null;
 		
+		@SuppressWarnings("deprecation")
 		Player player = LetItRain.server.getPlayer(s);
 		
 		return player;	

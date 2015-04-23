@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

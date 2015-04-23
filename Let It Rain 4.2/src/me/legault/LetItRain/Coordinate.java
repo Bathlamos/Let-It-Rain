@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 public class Coordinate {
 	public final double x, y, z;

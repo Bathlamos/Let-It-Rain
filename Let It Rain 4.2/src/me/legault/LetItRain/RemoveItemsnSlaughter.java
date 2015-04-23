@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import java.util.List;
 

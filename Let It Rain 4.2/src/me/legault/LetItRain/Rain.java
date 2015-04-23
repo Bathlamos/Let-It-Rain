@@ -1,9 +1,8 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -282,7 +281,7 @@ public class Rain implements CommandExecutor{
 		token = toSingular(token);
 		
 		for(EntityType o: EntityType.values()){
-			String name = o.getName() == null ? "": o.getName();
+			String name = o.name() == null ? "": o.name();
 			String simpleName = o.getEntityClass() == null || o.getEntityClass().getSimpleName() == null ? "": o.getEntityClass().getSimpleName();
 			
 			if(toSingular(simpleName).equalsIgnoreCase(token) ||
@@ -292,6 +291,7 @@ public class Rain implements CommandExecutor{
 		return null;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private Material findMaterial(String token){
 		
 		try{

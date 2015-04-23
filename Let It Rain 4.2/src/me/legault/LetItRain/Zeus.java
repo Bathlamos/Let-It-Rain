@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import java.util.regex.Pattern;
 
@@ -13,6 +13,7 @@ public class Zeus implements CommandExecutor{
 	
 	public Zeus(LetItRain plugin){}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label,  String[] args){
 		
 		Player player = null;

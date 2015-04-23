@@ -1,4 +1,4 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 /**
  * @title GrenadeLaucher
@@ -21,6 +21,7 @@ public class Launcher implements CommandExecutor{
 	
 	public Launcher(LetItRain plugin){}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label,  String[] args){
 		
 		Player player = null;
