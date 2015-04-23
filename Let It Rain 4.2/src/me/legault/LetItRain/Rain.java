@@ -279,7 +279,9 @@ public class Rain implements CommandExecutor{
 	private EntityType findEntity(String token){
 		
 		token = toSingular(token);
-		
+		if (token.equalsIgnoreCase("xporb")){
+			return EntityType.EXPERIENCE_ORB;
+		}
 		for(EntityType o: EntityType.values()){
 			String name = o.name() == null ? "": o.name();
 			String simpleName = o.getEntityClass() == null || o.getEntityClass().getSimpleName() == null ? "": o.getEntityClass().getSimpleName();
@@ -297,7 +299,7 @@ public class Rain implements CommandExecutor{
 		try{
 			int id = Integer.parseInt(token);
 			return Material.getMaterial(id);
-		}catch(NumberFormatException e){
+		}catch(NumberFormatException e){			
 			for (Material o: Material.values())
 				if (o != Material.AIR && toSingular(o.name()).equalsIgnoreCase(token))
 					return o;

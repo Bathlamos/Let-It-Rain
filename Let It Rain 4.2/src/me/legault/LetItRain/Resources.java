@@ -46,10 +46,7 @@ public class Resources {
 	
 	public static void privateMsg(CommandSender sender, String msg){
 		if (sender != null){
-			if (sender instanceof Player)
-				((Player)sender).sendMessage(msgColor + msg);
-			else
-				sender.sendMessage(msg);
+			sender.sendMessage(msgColor + msg);				
 		}
 				
 	}
