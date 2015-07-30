@@ -1,12 +1,4 @@
-package me.legault.letItRain;
-
-/**
- * @title GrenadeLaucher
- * @author Bathlamos, Maty241
- * @version 1.0
- * 
- * CraftBukkit 1.0.1+
- */
+package me.legault.LetItRain;
 
 import java.util.regex.Pattern;
 
@@ -17,10 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class Launcher implements CommandExecutor{
+public class Zeus implements CommandExecutor{
 	
-	public Launcher(LetItRain plugin){}
+	public Zeus(LetItRain plugin){}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label,  String[] args){
 		
 		Player player = null;
@@ -28,23 +21,21 @@ public class Launcher implements CommandExecutor{
 			Resources.privateMsg(sender, "Only a player can execute this command");
 		else{
 			//Permissions
-			if (!sender.hasPermission("LetItRain.launcher"))
+			if (!sender.hasPermission("LetItRain.zeus"))
 				return true;
 			
 			
 			player = (Player)sender;
 			PlayerInventory inventory = player.getInventory();
 			
-			inventory.addItem(new ItemStack(LetItRain.item));
+			inventory.addItem(new ItemStack(LetItRain.itemZeus));
 			
-			String outputMsg = LetItRain.dGrenadeMsg;
+			String outputMsg = LetItRain.dZeusMsg;
 			outputMsg = outputMsg.replaceAll(Pattern.quote("[player]"), player.getName());
 			if(!outputMsg.isEmpty())
 				Resources.broadcast(outputMsg);
 		}
 		
 		return true;
-		
 	}
-
 }

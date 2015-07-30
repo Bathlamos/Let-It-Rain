@@ -6,18 +6,16 @@
  * 
  */
 
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +26,6 @@ import java.util.logging.Logger;
 
 import org.bukkit.Material;
 import org.bukkit.Server;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -197,6 +194,7 @@ public class LetItRain extends JavaPlugin{
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void createConfig(){
 		
 		//Defaults
@@ -237,7 +235,7 @@ public class LetItRain extends JavaPlugin{
 			dFirerainMsg = conf("LetItRain.Rain.Firerain message", dFirerainMsg);
 			destructiveArrows = conf("LetItRain.Rain.Deep impact arrows", true);
 			itemZeus = conf("LetItRain.Zeus.Launcher id", 369);
-			item = conf("LetItRain.Grenade Launcher.Launcher id", 51);
+			item = conf("LetItRain.Grenade Launcher.Launcher id", 377);
 			dAmount = conf("LetItRain.Rain.Default amount", 500);
 			dRadius = conf("LetItRain.Rain.Default radius", 30);
 			rainBlocks = !conf("LetItRain.Rain.Blacklist.Block", false); //Note: the nots are important. Don't delete
@@ -250,7 +248,7 @@ public class LetItRain extends JavaPlugin{
 			Material.getMaterial(item);
 			if (Material.getMaterial(item) == null || item <= 0){
 				log.severe("Invalid item in plugin.yml (<Grenade Launcher.Launcher id>)");
-				item = 51;
+				item = 377;
 			}
 			
 			itemZeus = config.getInt("LetItRain.Zeus.Launcher id");

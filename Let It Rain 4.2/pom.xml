@@ -3,18 +3,24 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.legault</groupId>
 	<artifactId>let-it-rain</artifactId>
-	<version>4.2</version>
-	<name>Let It Rain</name>
+	<version>4.3</version>
+	<name>LetItRain</name>
 	<description>Bukkit plugin to unleash rain of entities and items</description>
 	<build>
+	<finalName>${project.name}</finalName>
+	<resources>
+      <resource>
+        <directory>D:\ProjetosBukkit\git\LetItRain\Let It Rain 4.2\resources</directory>
+      </resource>
+    </resources>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>

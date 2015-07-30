@@ -1,11 +1,10 @@
-package me.legault.letItRain;
+package me.legault.LetItRain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -95,6 +94,7 @@ public class Events implements Listener{
 	private LinkedList<Entity> snows = new LinkedList<Entity>();
 	
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
     public void interact(PlayerInteractEvent event) {
 		
@@ -107,7 +107,7 @@ public class Events implements Listener{
 		}else if(event.getPlayer().getItemInHand().getTypeId() == LetItRain.itemZeus && event.getPlayer().hasPermission("LetItRain.zeus")){
 			
 			Player player = event.getPlayer();
-			Location location = player.getTargetBlock(null, 800).getLocation(); 
+			Location location = player.getTargetBlock((Set<Material>)null, 800).getLocation(); 
 			 
 			World world = player.getWorld();
 			world.createExplosion(location, LetItRain.dLightningPower);
