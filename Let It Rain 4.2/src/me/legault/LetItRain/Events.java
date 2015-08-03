@@ -1,6 +1,7 @@
 package me.legault.LetItRain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -95,8 +97,11 @@ public class Events implements Listener{
 	
 	
 	@SuppressWarnings("deprecation")
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
     public void interact(PlayerInteractEvent event) {
+		if (event.isCancelled()){
+			return;
+		}
 		
 		if (event.getPlayer().getItemInHand().getTypeId() == LetItRain.item && event.getPlayer().hasPermission("LetItRain.launcher")){
 			
@@ -107,7 +112,7 @@ public class Events implements Listener{
 		}else if(event.getPlayer().getItemInHand().getTypeId() == LetItRain.itemZeus && event.getPlayer().hasPermission("LetItRain.zeus")){
 			
 			Player player = event.getPlayer();
-			Location location = player.getTargetBlock((Set<Material>)null, 800).getLocation(); 
+			Location location = player.getTargetBlock((HashSet<Byte>)null, 800).getLocation(); 
 			 
 			World world = player.getWorld();
 			world.createExplosion(location, LetItRain.dLightningPower);

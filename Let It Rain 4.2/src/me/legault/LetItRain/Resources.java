@@ -55,7 +55,6 @@ public class Resources {
 		if (s == null)
 			return null;
 		
-		@SuppressWarnings("deprecation")
 		Player player = LetItRain.server.getPlayer(s);
 		
 		return player;	

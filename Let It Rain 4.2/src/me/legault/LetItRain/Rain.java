@@ -402,6 +402,8 @@ public class Rain implements CommandExecutor{
 	private static boolean addRemoveCoordinates(CommandSender sender, String[] args){
 		File coordFile = new File("plugins" + File.separator + "LetItRain" + File.separator + "coordinates.yml");
 		FileConfiguration coords = YamlConfiguration.loadConfiguration(coordFile);
+		if(isNotPlayer(sender))
+			return true;
 		
 		if(!sender.hasPermission("LetItRain.rain.coordinates")){
 			Resources.privateMsg(sender, "You do not have permission to execute this command");
@@ -412,17 +414,15 @@ public class Rain implements CommandExecutor{
 			Resources.privateMsg(sender, "/rain add <location_name>");
 			return true;
 		}
-		if(isNotPlayer(sender))
-			return true;
 		
 		Player p = (Player) sender;
 		Location l = p.getLocation();
 		
 		if(args[0].equals("add")){
-			coords.set("LetItRain." + p.getWorld().getName() + "." + args[1], l.getX() + " " + l.getY() + " " + l.getZ());
 			if(!LetItRain.coordinates.add(new Coordinate(args[1], p.getWorld().getName(), l.getX(), l.getY(), l.getZ())))
 				Resources.privateMsg(sender, "The command has failed. It is likely that a location with the same name already exists");
 			else
+				coords.set("LetItRain." + p.getWorld().getName() + "." + args[1], l.getX() + " " + l.getY() + " " + l.getZ());
 				Resources.privateMsg(sender, "The coordinate has been added");
 		}else{
 			if(coords.get("LetItRain." + p.getWorld().getName() + "." + args[1]) != null){
