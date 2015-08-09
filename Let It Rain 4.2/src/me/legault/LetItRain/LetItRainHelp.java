@@ -17,8 +17,8 @@ public class LetItRainHelp implements CommandExecutor{
 		Resources.privateMsg(sender, "/zeus");
 		Resources.privateMsg(sender, "/strike <player>");
 		Resources.privateMsg(sender, "/launcher");
-		Resources.privateMsg(sender, "/slaughter <radius>");
-		Resources.privateMsg(sender, "/removeItems <radius>");
+		Resources.privateMsg(sender, "/slaughter <radius> <x> <y> <z> <world>");
+		Resources.privateMsg(sender, "/removeItems <radius> <x> <y> <z> <world>");
 		return true;
 	}
 

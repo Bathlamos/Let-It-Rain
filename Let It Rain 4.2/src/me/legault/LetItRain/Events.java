@@ -122,7 +122,7 @@ public class Events implements Listener{
 	
 	@EventHandler
 	public void dispenser(BlockDispenseEvent event){
-		if(event.getBlock().getType() == Material.DISPENSER && event.getItem().getType() == Material.SNOW_BALL && LetItRain.dispenserWorksWithFireSnowballs){
+		if(event.getBlock().getType().equals(Material.DISPENSER) && event.getItem().getType().equals(Material.SNOW_BALL) && LetItRain.dispenserWorksWithFireSnowballs){
 			
 			event.setCancelled(true);
 			

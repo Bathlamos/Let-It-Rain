@@ -89,7 +89,7 @@ public class RemoveItemsnSlaughter implements CommandExecutor{
 			}
 			for (Entity ent: p){
 				if (ent.getLocation().distance(origin) <= radius){
-					if (ent instanceof Item || ent instanceof Arrow || (ent instanceof ExperienceOrb && ent.getType() == EntityType.EXPERIENCE_ORB)){
+					if (ent instanceof Item || ent instanceof Arrow || (ent instanceof ExperienceOrb && ent.getType().equals(EntityType.EXPERIENCE_ORB))){
 						ent.remove();
 						num++;
 					}
