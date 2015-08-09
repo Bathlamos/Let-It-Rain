@@ -391,7 +391,7 @@ public class Metrics {
         encodeDataPair(data, "version", description.getVersion());
         encodeDataPair(data, "server", Bukkit.getVersion());
         int Online = 0;
-        for (Player p:Bukkit.getServer().getOnlinePlayers()){
+        for (@SuppressWarnings("unused") Player p:Bukkit.getServer().getOnlinePlayers()){
         	Online++;
         }
         encodeDataPair(data, "players", Integer.toString(Online));

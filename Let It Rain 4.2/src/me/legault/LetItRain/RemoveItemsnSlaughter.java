@@ -48,7 +48,7 @@ public class RemoveItemsnSlaughter implements CommandExecutor{
 				
 		Location origin;
 		
-		//Slaughter location: /slaughter <radius> x y z world
+		//Slaughter location: /slaughter <radius> <x> <y> <z> <world>
 		if (args.length == 5){
 			int x = 0;
 			int y = 0;
@@ -74,6 +74,7 @@ public class RemoveItemsnSlaughter implements CommandExecutor{
 		
 		int num = 0;
 		
+		//Removeitens: /removeitens <radius> <x> <y> <z> <world>
 		if (cmd.getName().equalsIgnoreCase("removeItems")){
 			
 			//Permissions

@@ -186,7 +186,7 @@ public class Rain implements CommandExecutor{
 		final EntityType fObj = obj;
 		final boolean fIsOnFire = isOnFire;
 		
-		if((!LetItRain.rainLava && mat == Material.LAVA) || (!LetItRain.rainWater && mat == Material.WATER)){
+		if((!LetItRain.rainLava && mat.equals(Material.LAVA)) || (!LetItRain.rainWater && mat.equals(Material.WATER))){
 			World w = targetLocation.getWorld();
 			if(recognizedParams == 1)
 				radius = amount;
@@ -196,8 +196,7 @@ public class Rain implements CommandExecutor{
 					w.getBlockAt(new Location(targetLocation.getWorld(), targetLocation.getX() + i, targetLocation.getY() + 50, targetLocation.getZ() + j)).setType(mat);
 			}
 		}else if(isTime){
-			@SuppressWarnings("deprecation")
-			int id = LetItRain.server.getScheduler().scheduleAsyncRepeatingTask(LetItRain.plugin, new Runnable(){
+			int id = LetItRain.server.getScheduler().scheduleSyncRepeatingTask(LetItRain.plugin, new Runnable(){
 
 				@Override
 				public void run() {
