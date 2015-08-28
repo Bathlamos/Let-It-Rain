@@ -98,10 +98,7 @@ public class Events implements Listener{
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
     public void interact(PlayerInteractEvent event) {
-		if (event.isCancelled()){
-			return;
-		}
-		
+				
 		if (event.getPlayer().getItemInHand().getTypeId() == LetItRain.item && event.getPlayer().hasPermission("LetItRain.launcher")){
 			
 			Entity snow = event.getPlayer().launchProjectile(Snowball.class);
@@ -111,7 +108,7 @@ public class Events implements Listener{
 		}else if(event.getPlayer().getItemInHand().getTypeId() == LetItRain.itemZeus && event.getPlayer().hasPermission("LetItRain.zeus")){
 			
 			Player player = event.getPlayer();
-			Location location = player.getTargetBlock((HashSet<Byte>)null, 800).getLocation(); 
+			Location location = player.getTargetBlock((HashSet<Byte>)null, 800).getLocation();  
 			 
 			World world = player.getWorld();
 			world.createExplosion(location, LetItRain.dLightningPower);

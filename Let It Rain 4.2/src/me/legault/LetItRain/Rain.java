@@ -166,8 +166,21 @@ public class Rain implements CommandExecutor{
 		//Test whether the animal is blacklisted
 		if (obj != null){
 			try{
-				if (LetItRain.config.getBoolean("LetItRain.rain.blacklist." + obj.getEntityClass().getSimpleName())){
+				if (LetItRain.config.getBoolean("LetItRain.Rain.Blacklist." + obj.getEntityClass().getSimpleName())){
 					Resources.privateMsg(sender, "The entity you chose has been blacklisted");
+					return true;
+				}
+			}catch(Exception e){
+				Resources.privateMsg(sender, "An unknow exception has occured with your config file. Please try again.");
+				return true;
+			}
+		}
+		
+		//Test whether the lava or water is blacklisted
+		if (mat != null && (mat.name().equals("LAVA") || mat.name().equals("WATER"))){
+			try{
+				if (LetItRain.config.getBoolean("LetItRain.Rain.Blacklist.Lava") || LetItRain.config.getBoolean("LetItRain.Rain.Blacklist.Water")){
+					Resources.privateMsg(sender, "The item you chose has been blacklisted");
 					return true;
 				}
 			}catch(Exception e){
@@ -185,15 +198,15 @@ public class Rain implements CommandExecutor{
 		final int fRadius = radius, fAmount = amount;
 		final EntityType fObj = obj;
 		final boolean fIsOnFire = isOnFire;
-		
-		if((!LetItRain.rainLava && mat.equals(Material.LAVA)) || (!LetItRain.rainWater && mat.equals(Material.WATER))){
+				
+		if((!LetItRain.rainLava && mat.name().equals("LAVA")) || (!LetItRain.rainWater && mat.name().equals("WATER"))){
 			World w = targetLocation.getWorld();
 			if(recognizedParams == 1)
 				radius = amount;
 			for(int i = -radius; i < radius; i++){
 				double boundary = Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2));
 				for(int j = -(int)boundary; j < boundary; j++)
-					w.getBlockAt(new Location(targetLocation.getWorld(), targetLocation.getX() + i, targetLocation.getY() + 50, targetLocation.getZ() + j)).setType(mat);
+					w.getBlockAt(new Location(targetLocation.getWorld(), targetLocation.getX() + i, targetLocation.getY() + 50, targetLocation.getZ() + j)).setType(Material.getMaterial(mat.name()+"_BUCKET"));
 			}
 		}else if(isTime){
 			int id = LetItRain.server.getScheduler().scheduleSyncRepeatingTask(LetItRain.plugin, new Runnable(){
@@ -298,12 +311,9 @@ public class Rain implements CommandExecutor{
 		try{
 			int id = Integer.parseInt(token);
 			return Material.getMaterial(id);
-		}catch(NumberFormatException e){			
-			for (Material o: Material.values())
-				if (o != Material.AIR && toSingular(o.name()).equalsIgnoreCase(token))
-					return o;
+		}catch(NumberFormatException e){	
+			return Material.getMaterial(toSingular(token).toUpperCase());
 		}
-		return null;
 	}
 	
 	private PotionType findPotion(String token){

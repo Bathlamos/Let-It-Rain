@@ -9,8 +9,8 @@ public class LetItRainHelp implements CommandExecutor{
 	public LetItRainHelp(LetItRain plugin){}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label,  String[] args) {
-		Resources.privateMsg(sender, "________________ Let It Rain " + Resources.getPluginVersion() + " ________________");
-		Resources.privateMsg(sender, "/rain <creature> <amount/duration> <radius> <player/coordinate name>");
+		Resources.privateMsg(sender, "________________ " + LetItRain.plugin.getDescription().getFullName() + " ________________");
+		Resources.privateMsg(sender, "/rain <creature/item> <amount/duration> <radius> <player/coordinate name>");
 		Resources.privateMsg(sender, "/firerain <creature> <amount/duration> <radius> <player/coordinate name>");
 		Resources.privateMsg(sender, "/rain add <coordinate name>");
 		Resources.privateMsg(sender, "/rain remove <coordinate name>");
@@ -18,8 +18,8 @@ public class LetItRainHelp implements CommandExecutor{
 		Resources.privateMsg(sender, "/strike <player>");
 		Resources.privateMsg(sender, "/launcher");
 		Resources.privateMsg(sender, "/slaughter <radius> <x> <y> <z> <world>");
-		Resources.privateMsg(sender, "/removeItems <radius> <x> <y> <z> <world>");
+		Resources.privateMsg(sender, "/removeItems <radius> <x> <y> <z> <world>");				
 		return true;
 	}
-
+	
 }
