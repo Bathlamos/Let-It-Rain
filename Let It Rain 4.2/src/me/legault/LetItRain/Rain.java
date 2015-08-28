@@ -166,8 +166,21 @@ public class Rain implements CommandExecutor{
 		//Test whether the animal is blacklisted
 		if (obj != null){
 			try{
-				if (LetItRain.config.getBoolean("LetItRain.rain.blacklist." + obj.getEntityClass().getSimpleName())){
+				if (LetItRain.config.getBoolean("LetItRain.Rain.Blacklist." + obj.getEntityClass().getSimpleName())){
 					Resources.privateMsg(sender, "The entity you chose has been blacklisted");
+					return true;
+				}
+			}catch(Exception e){
+				Resources.privateMsg(sender, "An unknow exception has occured with your config file. Please try again.");
+				return true;
+			}
+		}
+		
+		//Test whether the lava or water is blacklisted
+		if (mat != null && (mat.name().equals("LAVA") || mat.name().equals("WATER"))){
+			try{
+				if (LetItRain.config.getBoolean("LetItRain.Rain.Blacklist.Lava") || LetItRain.config.getBoolean("LetItRain.Rain.Blacklist.Water")){
+					Resources.privateMsg(sender, "The item you chose has been blacklisted");
 					return true;
 				}
 			}catch(Exception e){
@@ -185,19 +198,18 @@ public class Rain implements CommandExecutor{
 		final int fRadius = radius, fAmount = amount;
 		final EntityType fObj = obj;
 		final boolean fIsOnFire = isOnFire;
-		
-		if((!LetItRain.rainLava && mat == Material.LAVA) || (!LetItRain.rainWater && mat == Material.WATER)){
+				
+		if((!LetItRain.rainLava && mat.name().equals("LAVA")) || (!LetItRain.rainWater && mat.name().equals("WATER"))){
 			World w = targetLocation.getWorld();
 			if(recognizedParams == 1)
 				radius = amount;
 			for(int i = -radius; i < radius; i++){
 				double boundary = Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2));
 				for(int j = -(int)boundary; j < boundary; j++)
-					w.getBlockAt(new Location(targetLocation.getWorld(), targetLocation.getX() + i, targetLocation.getY() + 50, targetLocation.getZ() + j)).setType(mat);
+					w.getBlockAt(new Location(targetLocation.getWorld(), targetLocation.getX() + i, targetLocation.getY() + 50, targetLocation.getZ() + j)).setType(Material.getMaterial(mat.name()+"_BUCKET"));
 			}
 		}else if(isTime){
-			@SuppressWarnings("deprecation")
-			int id = LetItRain.server.getScheduler().scheduleAsyncRepeatingTask(LetItRain.plugin, new Runnable(){
+			int id = LetItRain.server.getScheduler().scheduleSyncRepeatingTask(LetItRain.plugin, new Runnable(){
 
 				@Override
 				public void run() {
@@ -299,12 +311,9 @@ public class Rain implements CommandExecutor{
 		try{
 			int id = Integer.parseInt(token);
 			return Material.getMaterial(id);
-		}catch(NumberFormatException e){			
-			for (Material o: Material.values())
-				if (o != Material.AIR && toSingular(o.name()).equalsIgnoreCase(token))
-					return o;
+		}catch(NumberFormatException e){	
+			return Material.getMaterial(toSingular(token).toUpperCase());
 		}
-		return null;
 	}
 	
 	private PotionType findPotion(String token){
@@ -402,6 +411,8 @@ public class Rain implements CommandExecutor{
 	private static boolean addRemoveCoordinates(CommandSender sender, String[] args){
 		File coordFile = new File("plugins" + File.separator + "LetItRain" + File.separator + "coordinates.yml");
 		FileConfiguration coords = YamlConfiguration.loadConfiguration(coordFile);
+		if(isNotPlayer(sender))
+			return true;
 		
 		if(!sender.hasPermission("LetItRain.rain.coordinates")){
 			Resources.privateMsg(sender, "You do not have permission to execute this command");
@@ -412,17 +423,15 @@ public class Rain implements CommandExecutor{
 			Resources.privateMsg(sender, "/rain add <location_name>");
 			return true;
 		}
-		if(isNotPlayer(sender))
-			return true;
 		
 		Player p = (Player) sender;
 		Location l = p.getLocation();
 		
 		if(args[0].equals("add")){
-			coords.set("LetItRain." + p.getWorld().getName() + "." + args[1], l.getX() + " " + l.getY() + " " + l.getZ());
 			if(!LetItRain.coordinates.add(new Coordinate(args[1], p.getWorld().getName(), l.getX(), l.getY(), l.getZ())))
 				Resources.privateMsg(sender, "The command has failed. It is likely that a location with the same name already exists");
 			else
+				coords.set("LetItRain." + p.getWorld().getName() + "." + args[1], l.getX() + " " + l.getY() + " " + l.getZ());
 				Resources.privateMsg(sender, "The coordinate has been added");
 		}else{
 			if(coords.get("LetItRain." + p.getWorld().getName() + "." + args[1]) != null){

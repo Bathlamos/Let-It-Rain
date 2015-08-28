@@ -10,13 +10,9 @@ public class Resources {
 	public static final ChatColor msgColor = ChatColor.AQUA;
 	
 	public static String getPluginTitle(){
-		return "LetItRain " + getPluginVersion();
+		return LetItRain.plugin.getDescription().getFullName();
 	}
 	
-	public static String getPluginVersion(){
-		return "4.2.0";
-	}
-
 	@SuppressWarnings("deprecation")
 	public static EntityType getEntityType(String identifier){
 		EntityType e;
@@ -55,7 +51,6 @@ public class Resources {
 		if (s == null)
 			return null;
 		
-		@SuppressWarnings("deprecation")
 		Player player = LetItRain.server.getPlayer(s);
 		
 		return player;	

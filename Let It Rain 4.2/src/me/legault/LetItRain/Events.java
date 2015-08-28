@@ -1,10 +1,10 @@
 package me.legault.LetItRain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +16,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -95,9 +96,9 @@ public class Events implements Listener{
 	
 	
 	@SuppressWarnings("deprecation")
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
     public void interact(PlayerInteractEvent event) {
-		
+				
 		if (event.getPlayer().getItemInHand().getTypeId() == LetItRain.item && event.getPlayer().hasPermission("LetItRain.launcher")){
 			
 			Entity snow = event.getPlayer().launchProjectile(Snowball.class);
@@ -107,7 +108,7 @@ public class Events implements Listener{
 		}else if(event.getPlayer().getItemInHand().getTypeId() == LetItRain.itemZeus && event.getPlayer().hasPermission("LetItRain.zeus")){
 			
 			Player player = event.getPlayer();
-			Location location = player.getTargetBlock((Set<Material>)null, 800).getLocation(); 
+			Location location = player.getTargetBlock((HashSet<Byte>)null, 800).getLocation();  
 			 
 			World world = player.getWorld();
 			world.createExplosion(location, LetItRain.dLightningPower);
@@ -118,7 +119,7 @@ public class Events implements Listener{
 	
 	@EventHandler
 	public void dispenser(BlockDispenseEvent event){
-		if(event.getBlock().getType() == Material.DISPENSER && event.getItem().getType() == Material.SNOW_BALL && LetItRain.dispenserWorksWithFireSnowballs){
+		if(event.getBlock().getType().equals(Material.DISPENSER) && event.getItem().getType().equals(Material.SNOW_BALL) && LetItRain.dispenserWorksWithFireSnowballs){
 			
 			event.setCancelled(true);
 			

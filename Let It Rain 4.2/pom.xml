@@ -28,19 +28,28 @@
 
 
 	<repositories>
-		<!-- Bukkit -->
+		<!-- spigot -->
 		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/groups/public/</url>
-		</repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
 	</repositories>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>[1.6.2,)</version>
-		</dependency>
-	</dependencies>
-
+   <dependencies>
+	<!--Spigot-API-->
+    <dependency>
+       <groupId>org.spigotmc</groupId>
+       <artifactId>spigot-api</artifactId>
+       <version>1.8.8-R0.1-SNAPSHOT</version>
+    </dependency> 
+        <!-- bukkit 
+        <dependency>
+			<groupId>Bukkit</groupId>
+			<artifactId>Bukkit</artifactId>
+			<version>v1</version>
+			<scope>system</scope>
+			<systemPath>D:/ProjetosBukkit/APIs/cb1.7.9.jar</systemPath>
+		</dependency> -->
+    </dependencies>
+    
 </project>

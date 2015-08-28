@@ -1,6 +1,6 @@
 name: LetItRain
 main: me.legault.LetItRain.LetItRain
-version: 4.2.0
+version: 4.3.2
 
 commands:
    zeus:
@@ -31,12 +31,12 @@ commands:
       permission: LetItRain.launcher
    removeItems:
       description: removes drops from the rain command
-      usage: /<command> <radius>
+      usage: /<command> <radius> <x> <y> <z> <world>
       default: op
       permission: LetItRain.removeItems
    slaughter:
       description: kill nearby animals
-      usage: /<command> <radius>
+      usage: /<command> <radius> <x> <y> <z> <world>
       default: op
       permission: LetItRain.slaughter
    letitrain:

@@ -2,6 +2,7 @@ package me.legault.LetItRain;
 
 import java.util.regex.Pattern;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,16 +27,18 @@ public class Zeus implements CommandExecutor{
 			
 			
 			player = (Player)sender;
-			PlayerInventory inventory = player.getInventory();
-			
-			inventory.addItem(new ItemStack(LetItRain.itemZeus));
-			
-			String outputMsg = LetItRain.dZeusMsg;
-			outputMsg = outputMsg.replaceAll(Pattern.quote("[player]"), player.getName());
-			if(!outputMsg.isEmpty())
-				Resources.broadcast(outputMsg);
+			PlayerInventory inv = player.getInventory();
+			Material mat = Material.getMaterial(LetItRain.itemZeus);
+			ItemStack item = new ItemStack(mat);
+			if (!inv.contains(mat) && inv.firstEmpty() != -1){                	
+				inv.addItem(item);
+				String outputMsg = LetItRain.dZeusMsg;
+				outputMsg = outputMsg.replaceAll(Pattern.quote("[player]"), player.getName());
+				if(!outputMsg.isEmpty()){
+					Resources.broadcast(outputMsg);
+				}
+			}
 		}
-		
 		return true;
 	}
 }

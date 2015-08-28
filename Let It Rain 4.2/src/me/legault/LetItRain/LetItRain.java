@@ -85,7 +85,7 @@ public class LetItRain extends JavaPlugin{
 		
 		extractCoordinates();
 		createConfig();
-		
+				
 		rainExec = new Rain();
 		getCommand("rain").setExecutor(rainExec);
 		getCommand("firerain").setExecutor(rainExec);
@@ -122,7 +122,7 @@ public class LetItRain extends JavaPlugin{
 			    	int mostRecent = Integer.parseInt(line.replaceAll(".", ""));
 			    	while(mostRecent < 1000)
 			    		mostRecent *= 10;
-			    	int plugin = Integer.parseInt(Resources.getPluginVersion().replaceAll(".", ""));
+			    	int plugin = Integer.parseInt(LetItRain.plugin.getDescription().getVersion().replaceAll(".", ""));
 			    	while(plugin < 1000)
 			    		plugin *= 10;
 			    	if(plugin < mostRecent)
@@ -155,10 +155,11 @@ public class LetItRain extends JavaPlugin{
 		coords.options().header(
 				"Let It Rain programmable coordinates \n" +
 				"The format is x y z\n\n" +
-				"Maty241, Bathlamos\n" +
-				"Version " + Resources.getPluginVersion() + "\n\n\n" +
+				"Maty241, Bathlamos, FabioZumbi12\n" +
+				"Version " + LetItRain.plugin.getDescription().getVersion() + "\n\n\n" +
 				"http://mathieu.legault.me/\n" +
-				"http://bathlamos.me/\n");
+				"http://bathlamos.me/\n" + 
+				"http://areaz12server.net.br/\n");
 		coords.set("LetItRain.world.samplePosition", "0 0 0");
 		
 		for(String g: coords.getConfigurationSection("LetItRain").getKeys(false)){
@@ -195,8 +196,7 @@ public class LetItRain extends JavaPlugin{
 	}
 	
 	@SuppressWarnings("deprecation")
-	private void createConfig(){
-		
+	private void createConfig(){		
 		//Defaults
 		dLightningPower = 15;
 		dZeusMsg = "[player] shall bring peace";
@@ -213,13 +213,14 @@ public class LetItRain extends JavaPlugin{
 		try{
 			config = getConfig();
 			File confRain = new File("plugins" + File.separator + "LetItRain" + File.separator + "config.yml");
-	
+
 			config.options().header(
 					"Let It Rain plugin \n\n" +
 					"Maty241, Bathlamos\n" +
-					"Version " + Resources.getPluginVersion() + "\n\n\n" +
+					"Version " + plugin.getDescription().getVersion() + "\n\n\n" +
 					"http://mathieu.legault.me/\n" +
-					"http://bathlamos.me/\n");
+					"http://bathlamos.me/\n" + 
+					"http://areaz12server.net.br/\n");
 			
 			checkForUpdate = conf("LetItRain.Check for updates", true);
 			dLightningPower = conf("LetItRain.Zeus.Lightning explosion power", dLightningPower);
@@ -241,8 +242,7 @@ public class LetItRain extends JavaPlugin{
 			rainBlocks = !conf("LetItRain.Rain.Blacklist.Block", false); //Note: the nots are important. Don't delete
 			rainPotions = !conf("LetItRain.Rain.Blacklist.Potion", false);//Note: the nots are important. Don't delete
 			rainLava = conf("LetItRain.Rain.Blacklist.Lava", false);
-			rainWater = conf("LetItRain.Rain.Blacklist.Water", false);
-			
+			rainWater = conf("LetItRain.Rain.Blacklist.Water", false);			
 			item = config.getInt("LetItRain.Grenade Launcher.Launcher id");
 			
 			Material.getMaterial(item);
@@ -271,19 +271,16 @@ public class LetItRain extends JavaPlugin{
 				config.set("LetItRain.Rain.Blacklist." + key, isBlacklisted);
 			}
 			
-			config.save(confRain);
-			
+			config.save(confRain);				
 		}catch(Exception e){
 			e.printStackTrace();
 			log.severe("An error has been detected with the config file. Default values will be loaded");
 		}finally{
 			saveConfig();
 		}
-		
-		
 	}
 	
-	private String conf(String identifier, String value){
+	private static String conf(String identifier, String value){
 		if (!config.contains(identifier)){
 			config.set(identifier, value);
 			return value;
@@ -291,7 +288,7 @@ public class LetItRain extends JavaPlugin{
 			return config.getString(identifier);
 	}
 	
-	private boolean conf(String identifier, boolean value){
+	private static boolean conf(String identifier, boolean value){
 		if (!config.contains(identifier)){
 			config.set(identifier, value);
 			return value;
@@ -299,7 +296,7 @@ public class LetItRain extends JavaPlugin{
 			return config.getBoolean(identifier);
 	}
 	
-	private int conf(String identifier, int value){
+	private static int conf(String identifier, int value){
 		if (!config.contains(identifier)){
 			config.set(identifier, value);
 			return value;

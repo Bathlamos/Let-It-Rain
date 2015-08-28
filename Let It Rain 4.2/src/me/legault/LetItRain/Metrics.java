@@ -60,6 +60,7 @@ package me.legault.LetItRain;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 
@@ -389,7 +390,11 @@ public class Metrics {
         data.append(encode("guid")).append('=').append(encode(guid));
         encodeDataPair(data, "version", description.getVersion());
         encodeDataPair(data, "server", Bukkit.getVersion());
-        encodeDataPair(data, "players", Integer.toString(Bukkit.getServer().getOnlinePlayers().size()));
+        int Online = 0;
+        for (@SuppressWarnings("unused") Player p:Bukkit.getServer().getOnlinePlayers()){
+        	Online++;
+        }
+        encodeDataPair(data, "players", Integer.toString(Online));
         encodeDataPair(data, "revision", String.valueOf(REVISION));
 
         // If we're pinging, append it
